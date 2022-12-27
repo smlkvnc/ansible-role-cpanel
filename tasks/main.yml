@@ -1,0 +1,33 @@
+---
+- name: Install Vim and Update
+  yum: 
+    name: vim
+    state: present
+    update_cache: yes
+
+- name: Reboot
+  reboot: 
+    connect_timeout: 180
+
+- name: Selinux Configuration
+  template: 
+    src: config.j2
+    dest: /etc/selinux/config 
+
+#- name: Network Manager Stop and Disable
+#  service: 
+#    name: NetworkManager
+#    state: stopped
+#    enabled: no
+
+
+- name: Download Cpanel
+  shell: curl -o latest -L https://securedownloads.cpanel.net/latest && sh latest
+  args:
+    chdir: /home
+
+- name: Change Hostname
+  hostname: 
+    name: "{{ host_name }}"
+
+
