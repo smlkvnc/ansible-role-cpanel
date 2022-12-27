@@ -14,11 +14,11 @@
     src: config.j2
     dest: /etc/selinux/config 
 
-#- name: Network Manager Stop and Disable
-#  service: 
-#    name: NetworkManager
-#    state: stopped
-#    enabled: no
+- name: Network Manager Stop and Disable
+  service: 
+    name: NetworkManager
+    state: stopped
+    enabled: no
 
 
 - name: Download Cpanel
